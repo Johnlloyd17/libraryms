@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pahina Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"></head><body>
+<header class="bar"><div class="bar-in"><div class="brand">Pahina Library</div>
+<nav id="menu" class="tabs" aria-label="Views"><button data-v="dash" aria-current="page">Dashboard</button><button data-v="books">Books</button><button data-v="members">Members</button><button data-v="borrow">Borrow/Return</button><button data-v="records">Records</button></nav>
+<div class="bar-r"><label class="sr" for="q">Search books</label><input id="q" type="search" placeholder="Search books"></div></div></header>
+<main class="wrap"><div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<section id="v-dash" class="view">
+<div class="hero"><div class="hero-l"><p class="eyebrow" id="today"></p><h1 id="hero-line"></h1><p class="lead" id="hero-sub"></p>
+<div class="hero-act"><button class="btn p" data-go="borrow">Borrow a book</button><button class="btn s" data-go="books">Browse the shelf</button></div></div>
+<div class="hero-r"><div id="donut" aria-hidden="true"></div><ul class="legend" id="legend"></ul></div></div>
+<dl class="stats"><div><dt>Total books</dt><dd id="k-total">0</dd></div><div><dt>On the shelf</dt><dd id="k-avail">0</dd></div><div><dt>Borrowed</dt><dd id="k-bor">0</dd></div><div><dt>Overdue</dt><dd id="k-over">0</dd></div></dl>
+<div class="two"><div class="panel"><h2>Due soon and overdue</h2><ol class="timeline" id="due"></ol></div><div class="panel"><h2>On the shelf by category</h2><div class="catlist" id="cats"></div></div></div></section>
+
+<section id="v-books" class="view" hidden><div class="head"><h2>The shelf</h2><button class="btn p" id="add-book">Add book</button></div><div class="shelf" id="books"></div></section>
+
+<section id="v-members" class="view" hidden><div class="head"><h2>Members</h2><button class="btn p" id="add-mem">Add member</button></div><div class="people" id="members"></div></section>
+
+<section id="v-borrow" class="view" hidden><div class="head"><h2>Borrow/Return</h2><div class="seg" id="seg" role="tablist"><button role="tab" data-p="p-borrow" aria-selected="true">Borrow</button><button role="tab" data-p="p-return" aria-selected="false">Return</button></div></div>
+<div id="p-borrow" class="wiz"><div><ol class="steps" id="steps"><li>Member</li><li>Book</li><li>Due date</li></ol>
+<div class="wbody"><div id="s1"></div><div id="s2" hidden></div><div id="s3" hidden><h3>When is it due?</h3><div class="quick"><button type="button" class="chipbtn" data-d="7">7 days</button><button type="button" class="chipbtn" data-d="14">14 days</button><button type="button" class="chipbtn" data-d="21">21 days</button></div><label for="b-due">Due date</label><input id="b-due" type="date"></div>
+<div class="msg" id="bmsg" role="status" aria-live="polite"></div>
+<div class="wnav"><button class="btn s" id="wback" type="button">Back</button><button class="btn p" id="wnext" type="button">Next</button></div></div></div>
+<aside class="receipt"><h2>Loan summary</h2><dl><dt>Member</dt><dd id="rc-m">Not chosen</dd><dt>Book</dt><dd id="rc-b">Not chosen</dd><dt>Due</dt><dd id="rc-d">-</dd><dt>Late fine</dt><dd>PHP 5 per day</dd><dt>Limit</dt><dd>3 books per member</dd></dl></aside></div>
+<div id="p-return" hidden><div class="loans" id="loans"></div></div></section>
+
+<section id="v-records" class="view" hidden><div class="head"><h2>Records</h2><div class="seg" id="rfs"><button data-f="All" aria-pressed="true">All</button><button data-f="Borrowed" aria-pressed="false">Borrowed</button><button data-f="Overdue" aria-pressed="false">Overdue</button><button data-f="Returned" aria-pressed="false">Returned</button></div></div><div id="recs"></div></section>
+</main>
+<dialog id="fdlg"><form id="fform" novalidate></form></dialog>
+<dialog id="cdlg"><h3>Please confirm</h3><p id="ctext" class="mut"></p><div class="row"><button class="btn s" type="button" id="cno">Cancel</button><button class="btn p" type="button" id="cyes">Delete</button></div></dialog>
+<script src="app.js"></script></body></html>
